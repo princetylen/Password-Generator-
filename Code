@@ -1,0 +1,39 @@
+import random
+import string
+
+def generate_password(length: int) -> str:
+    """
+    Function to generate a random password of a specified length.
+
+    Parameters:
+    - length: int
+        The length of the password to be generated.
+
+    Returns:
+    - str:
+        The randomly generated password.
+
+    Raises:
+    - ValueError:
+        If the length provided is less than 6, it will raise an error since a secure password should be of reasonable length.
+    """
+
+    if length < 6:
+        raise ValueError("Password length should be at least 6 characters.")
+
+    # Defining the pool of characters to choose from for the password
+    characters = string.ascii_letters + string.digits + string.punctuation
+
+    # Generating the password by selecting 'length' number of characters randomly from the pool
+    password = ''.join(random.choice(characters) for _ in range(length))
+
+    return password
+
+# Example of using the generate_password function:
+
+try:
+    password_length = 12
+    generated_password = generate_password(password_length)
+    print(f"Generated Password of length {password_length}: {generated_password}")
+except ValueError as e:
+    print(f"Error generating password: {e}")
